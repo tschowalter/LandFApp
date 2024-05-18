@@ -1,60 +1,68 @@
-import express from 'express'
-import { Admin } from '../models/Admin.js'
-import { Client } from '../models/Client.js'
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+import express from 'express';
+import { Admin } from '../models/Admin.js';
+import { Client } from '../models/Client.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
 const router = express.Router();
 
 router.post('/login', async (req, res) => {
-    try{
-        const {username, password, role} = req.body;
-        if (role === 'admin') {
-            const admin = await Admin.findOne({username})
-            if (!admin) {
-                res.json({message: "admin not registered"})
-            }
-            const validPassword = await bcrypt.compare(password, admin.password)
-            if (!validPassword) {
-                return res.json({message: 'wrong password'})
-            }
-            const token = jwt.sign({username: admin.username, role: 'admin'}, process.env.Admin_Key)
-            res.cookie('token', token, {httpOnly: true, secure: true})
-            return res.json({login:true, role: 'admin'})
-        } else if (role === 'client') {
-            const client = await Client.findOne({username})
-            if (!client) {
-                return res.json({message: "client not registered"})
-            }
-            const validPassword = await bcrypt.compare(password, client.password)
-            if (!validPassword) {
-                return res.json({message: 'wrong password'})
-            }
-            const token = jwt.sign({username: client.username, role: 'client'}, process.env.Client_Key)
-            res.cookie('token', token, {httpOnly: true, secure: true})
-            return res.json({login: true, role: 'client'})
-        } else {
-            console.log('invalid role');
+    console.log('Login endpoint hit');
+    try {
+        const { username, password, role } = req.body;
+        if (!username || !password || !role) {
+            return res.status(400).json({ message: 'Missing username, password, or role' });
         }
-    } catch(err) {
-        res.json(err)
+
+        let user;
+        let key;
+        if (role === 'admin') {
+            user = await Admin.findOne({ username });
+            key = process.env.Admin_Key;
+        } else if (role === 'client') {
+            user = await Client.findOne({ username });
+            key = process.env.Client_Key;
+        } else {
+            return res.status(400).json({ message: 'Invalid role' });
+        }
+
+        if (!user) {
+            return res.status(404).json({ message: `${role} not registered` });
+        }
+
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            return res.status(401).json({ message: 'Wrong password' });
+        }
+
+        const token = jwt.sign({ username: user.username, role }, key);
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+        });
+
+        return res.json({ login: true, role });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
     }
-})
+});
 
 const verifyAdmin = (req, res, next) => {
     const token = req.cookies.token;
-    if(!token) {
-        return res.json({message: "Invalid Admin"})
-    } else {
-        jwt.verify(token, process.env.Admin_Key, (err, decoded) => {
-            if(err) {
-                return res.json({message: "Invalid token"})
-            } else {
-                req.username = decoded.username;
-                req.role = decoded.role;
-                next()
-            }
-        })
+    if (!token) {
+        return res.status(401).json({ message: 'Invalid Admin' });
     }
-}
 
-export {router as AdminRouter, verifyAdmin}
+    jwt.verify(token, process.env.Admin_Key, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
+
+        req.username = decoded.username;
+        req.role = decoded.role;
+        next();
+    });
+};
+
+export { router as AdminRouter, verifyAdmin };

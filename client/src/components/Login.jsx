@@ -1,25 +1,36 @@
-import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [role, setRole] = useState('admin')
-  const navigate = useNavigate()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('client');
+  const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
-  const handleSubmit = () => {
-    axios.post('http://localhost:3000/auth/login', {username, password, role})
-    .then(res => {
-      if (res.data.login && res.data.role === 'admin') {
-        navigate('/dashboard')
-      } else if (res.data.login && res.data.role ==='client') {
-        navigate('/')
+
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post('http://localhost:3000/auth/login', {
+        username,
+        password,
+        role
+      });
+      if (res.data.login) {
+        if (res.data.role === 'admin') {
+          navigate('/dashboard');
+        } else if (res.data.role === 'client') {
+          navigate('/');
+        }
+      } else {
+        console.error('Login failed:', res.data.message);
       }
-    })
-    .catch(err => console.log(err))
-  }
+    } catch (err) {
+      console.error('Error:', err);
+    }
+  };
+
   return (
     <div className='login-page'>
       <div className='login-container'>
@@ -45,7 +56,7 @@ const Login = () => {
         <button className='btn-login' onClick={handleSubmit}>Login</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
