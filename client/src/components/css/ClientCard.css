@@ -1,0 +1,3 @@
+.preferences {
+    white-space: pre-line; /* citation: https://stackoverflow.com/questions/35351706/how-to-render-a-multi-line-text-string-in-react */
+  }

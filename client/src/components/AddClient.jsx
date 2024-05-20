@@ -13,7 +13,8 @@ const AddClient = () => {
         axios.post('http://localhost:3000/client/register', {id, username, password})
         .then(res => { 
             if(res.data.registered) {
-                navigate('/dashboard')
+                alert(`Client ${username} registered`)
+                navigate('/addclient')
             }
             console.log(res)
         }).catch(err => console.log(err))

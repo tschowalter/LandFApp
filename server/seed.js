@@ -10,7 +10,8 @@ async function AdminAccount() {
             const hashPassword = await bcrypt.hash('adminpassword', 10)
             const newAdmin = new Admin({
                 username: 'admin',
-                password: hashPassword
+                password: hashPassword,
+                time: []
             })
             await newAdmin.save()
             console.log("account created")
