@@ -8,7 +8,7 @@ import a4gChickenSoup from "./Images/a4gChickenSoup.png";
 import a4gMushroomSoup from "./Images/a4gMushroomSoup.png";
 import a4gGreenBeans from "./Images/a4gGreenBeans.png";
 import a4gCorn from "./Images/a4gCorn.png";
-import a4gCannedCarrots from "./Images/a4gCanCarrots.png";
+import a4gCarrots from "./Images/a4gCanCarrots.png";
 import a4gPineapple from "./Images/a4gPineapple.png";
 import a4gPear from "./Images/a4gPear.png";
 import a4gPeach from "./Images/a4gPeach.png";
@@ -25,7 +25,6 @@ import a4gSweetPotato from "./Images/a4gSweetPotatos.png";
 import a4gYams from "./Images/a4gYam.png";
 import a4gLettuce from "./Images/a4gLettuce.png";
 import a4gSquash from "./Images/a4gSquash.png";
-import a4gCarrots from "./Images/a4gCarrots.png";
 import a4gChicken from "./Images/a4gChicken.png";
 import a4gTurkey from "./Images/a4gTurkey.png";
 import a4gHamburger from "./Images/a4gHamburger.png";
@@ -80,26 +79,26 @@ function Preferences() {
         Allergies: '',
         Juice: false,
         Milk: false,
-        PastaSauce: false,
-        TomatoSoup: false,
-        ChickenSoup: false,
-        MushroomSoup: false,
-        GreenBeans: false,
+        Pasta_Sauce: false,
+        Tomato_Soup: false,
+        Chicken_Soup: false,
+        Mushroom_Soup: false,
+        Green_Beans: false,
         Corn: false,
-        CannedCarrots: false,
+        Carrots: false,
         Pineapple: false,
         Pear: false,
         Peach: false,
-        KidneyBeans: false,
+        Kidney_Beans: false,
         Chickpeas: false,
-        BlackBeans: false,
-        PeanutButter: false,
+        Black_Beans: false,
+        Peanut_Butter: false,
         Cheerios: false,
-        RiceKrispies: false,
+        Rice_Krispies: false,
         Apple: false,
         Potato: false,
         Onion: false,
-        SweetPotato: false,
+        Sweet_Potato: false,
         Yams: false,
         Lettuce: false,
         Squash: false,
@@ -107,8 +106,8 @@ function Preferences() {
         Chicken: false,
         Turkey: false,
         Hamburger: false,
-        WhiteFish: false,
-        RedFish: false,
+        White_Fish: false,
+        Red_Fish: false,
         Cheese: false,
         Bread: false,
         Eggs: false
@@ -153,11 +152,11 @@ function Preferences() {
                         Pasta Sauce: <input
                             type="checkbox"
                             name="Pasta Sauce"
-                            checked = {preferences.PastaSauce}
+                            checked = {preferences.Pasta_Sauce}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    PastaSauce: !preferences.PastaSauce
+                                    Pasta_Sauce: !preferences.Pasta_Sauce
                                 })
                             }}
                         />
@@ -168,11 +167,11 @@ function Preferences() {
                         Tomato Soup: <input
                             type="checkbox"
                             name="Tomato Soup"
-                            checked = {preferences.TomatoSoup}
+                            checked = {preferences.Tomato_Soup}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    TomatoSoup: !preferences.TomatoSoup
+                                    Tomato_Soup: !preferences.Tomato_Soup
                                 })
                             }}
                         />
@@ -183,11 +182,11 @@ function Preferences() {
                         Chicken Soup: <input
                             type="checkbox"
                             name="Chicken Soup"
-                            checked = {preferences.ChickenSoup}
+                            checked = {preferences.Chicken_Soup}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    ChickenSoup: !preferences.ChickenSoup
+                                    Chicken_Soup: !preferences.Chicken_Soup
                                 })
                             }}
                         />
@@ -198,11 +197,11 @@ function Preferences() {
                         Mushroom Soup: <input
                             type="checkbox"
                             name="Mushroom Soup"
-                            checked = {preferences.MushroomSoup}
+                            checked = {preferences.Mushroom_Soup}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    MushroomSoup: !preferences.MushroomSoup
+                                    Mushroom_Soup: !preferences.Mushroom_Soup
                                 })
                             }}
                         />
@@ -213,11 +212,11 @@ function Preferences() {
                         Green Beans: <input
                             type="checkbox"
                             name="Green Beans"
-                            checked = {preferences.GreenBeans}
+                            checked = {preferences.Green_Beans}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    GreenBeans: !preferences.GreenBeans
+                                    Green_Beans: !preferences.Green_Beans
                                 })
                             }}
                         />
@@ -303,11 +302,11 @@ function Preferences() {
                         Kidney Beans: <input
                             type="checkbox"
                             name="Kidney Beans"
-                            checked = {preferences.KidneyBeans}
+                            checked = {preferences.Kidney_Beans}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    KidneyBeans: !preferences.KidneyBeans
+                                    Kidney_Beans: !preferences.Kidney_Beans
                                 })
                             }}
                         />
@@ -333,11 +332,11 @@ function Preferences() {
                         Black beans: <input
                             type="checkbox"
                             name="Black beans"
-                            checked = {preferences.BlackBeans}
+                            checked = {preferences.Black_Beans}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    BlackBeans: !preferences.BlackBeans
+                                    Black_Beans: !preferences.Black_Beans
                                 })
                             }}
                         />
@@ -348,11 +347,11 @@ function Preferences() {
                         Peanut Butter: <input
                             type="checkbox"
                             name="Peanut Butter"
-                            checked = {preferences.PeanutButter}
+                            checked = {preferences.Peanut_Butter}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    PeanutButter: !preferences.PeanutButter
+                                    Peanut_Butter: !preferences.Peanut_Butter
                                 })
                             }}
                         />
@@ -378,11 +377,11 @@ function Preferences() {
                         Rice Krispies: <input
                             type="checkbox"
                             name="Rice Krispies"
-                            checked = {preferences.RiceKrispies}
+                            checked = {preferences.Rice_Krispies}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    RiceKrispies: !preferences.RiceKrispies
+                                    Rice_Krispies: !preferences.Rice_Krispies
                                 })
                             }}
                         />
@@ -438,11 +437,11 @@ function Preferences() {
                         Sweet potato: <input
                             type="checkbox"
                             name="Sweet potato"
-                            checked = {preferences.SweetPotato}
+                            checked = {preferences.Sweet_Potato}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    SweetPotato: !preferences.SweetPotato
+                                    Sweet_Potato: !preferences.Sweet_Potato
                                 })
                             }}
                         />
@@ -558,11 +557,11 @@ function Preferences() {
                         White fish: <input
                             type="checkbox"
                             name="White fish"
-                            checked = {preferences.WhiteFish}
+                            checked = {preferences.White_Fish}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    WhiteFish: !preferences.WhiteFish
+                                    White_Fish: !preferences.White_Fish
                                 })
                             }}
                         />
@@ -573,11 +572,11 @@ function Preferences() {
                         Red fish: <input
                             type="checkbox"
                             name="Red fish"
-                            checked = {preferences.RedFish}
+                            checked = {preferences.Red_Fish}
                             onChange={() => {
                                 setPreferences({
                                     ...preferences,
-                                    RedFish: !preferences.RedFish
+                                    Red_Fish: !preferences.Red_Fish
                                 })
                             }}
                         />

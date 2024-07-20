@@ -16,7 +16,6 @@ const AddClient = () => {
                 alert(`Client ${username} registered`)
                 navigate('/addclient')
             }
-            console.log(res)
         }).catch(err => console.log(err))
     }
   return (
