@@ -31,7 +31,6 @@ const Dashboard = () => {
       clientsAtTen = timeSort(clientsAtTen)
       clientsAtEleven = timeSort(clientsAtEleven)
       unregisteredClients = alphSort(unregisteredClients)
-      console.log(unregisteredClients)
       const arrays = [clientsAtNine, clientsAtTen, clientsAtEleven, unregisteredClients]
       for (var clientList of arrays)
         for (var client of clientList)

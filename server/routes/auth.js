@@ -11,11 +11,11 @@ router.post('/login', async (req, res) => {
         if (role === 'admin') {
             const admin = await Admin.findOne({username})
             if (!admin) {
-                res.json({message: "admin not registered"})
+                res.json({message: "Invalid admin account"})
             }
             const validPassword = await bcrypt.compare(password, admin.password)
             if (!validPassword) {
-                return res.json({message: 'wrong password'})
+                return res.json({message: "'Incorrect password"})
             }
             const token = jwt.sign({username: admin.username, role: 'admin'}, process.env.Admin_Key)
             res.cookie('token', token, {httpOnly: true, secure: true})
@@ -23,11 +23,11 @@ router.post('/login', async (req, res) => {
         } else if (role === 'client') {
             const client = await Client.findOne({username})
             if (!client) {
-                return res.json({message: "client not registered"})
+                return res.json({message: "Invalid client account"})
             }
             const validPassword = await bcrypt.compare(password, client.password)
             if (!validPassword) {
-                return res.json({message: 'wrong password'})
+                return res.json({message: "Incorrect password"})
             }
             const token = jwt.sign({username: client.username, role: 'client'}, process.env.Client_Key)
             res.cookie('token', token, {httpOnly: true, secure: true})
@@ -60,6 +60,7 @@ const verifyAdmin = (req, res, next) => {
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token) {
+        //alert('Invalid user')
         return res.json({message: "Invalid User"})
     } else {
         jwt.verify(token, process.env.Admin_Key, (err, decoded) => {

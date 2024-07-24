@@ -8,13 +8,17 @@ const ClientCard = ({client}) => {
         for (var property in prefObj) {
           if (typeof prefObj[property] != 'boolean')
             prefString += `${property}: ${prefObj[property]}\n`
-          else if (prefObj[property]) {
+          else {
+            if (prefObj[property])
+              prefString += '️✅'
+            else
+              prefString += '❌'
             let under = property.indexOf('_')
             if (under == -1)
               prefString += property + '\n'
             else
               prefString += `${property.substring(0, under)} ${property.substring(under + 1)}\n`
-          }
+            }
         }
         return prefString
     }
