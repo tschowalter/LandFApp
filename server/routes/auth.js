@@ -60,7 +60,6 @@ const verifyAdmin = (req, res, next) => {
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token) {
-        //alert('Invalid user')
         return res.json({message: "Invalid User"})
     } else {
         jwt.verify(token, process.env.Admin_Key, (err, decoded) => {

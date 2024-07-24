@@ -637,9 +637,10 @@ function Preferences() {
         axios.put('http://localhost:3000/client/update/'+username, {preferences})
         .then(res => {
           if(res.data.updated) {
-            console.log(res)
+            alert('Preferences submitted')
           }
           else {
+            alert('Preferences couldn\'t be submitted due to an error. Email tjaschowalter@gmail.com or text 508-728-7422 for support')
             console.log(res)
           }
         }).catch(err => console.log(err))
@@ -670,7 +671,7 @@ function Preferences() {
                 <br />
 
                 <label>
-                Enter any allergies and dietary restrictions:{' '}
+                list any allergies and dietary restrictions:{' '}
                 <input
                     value={preferences.Allergies}
                     onChange={(e) => {setPreferences({

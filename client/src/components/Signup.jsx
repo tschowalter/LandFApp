@@ -11,6 +11,7 @@ function Signup() {
     .then(res => {
       if(res.data.updated) {
         console.log(res)
+        alert(`Signed up for ${res.data.client.time}`)
       }
       else {
         console.log(res)
@@ -25,22 +26,22 @@ function Signup() {
       <label htmlFor="time">Please select a time to pick up food on Saturday, June 15:</label>
       <select name="time" id='time'
             onChange={(e) => setTime(e.target.value)}>
-            <option value="9:00">9:00 AM</option>
-            <option value="9:10">9:10 AM</option>
-            <option value="9:20">9:20 AM</option>
-            <option value="9:30">9:30 AM</option>
-            <option value="9:40">9:40 AM</option>
-            <option value="9:50">9:50 AM</option>
-            <option value="10:00">10:00 AM</option>
-            <option value="10:10">10:10 AM</option>
-            <option value="10:20">10:20 AM</option>
-            <option value="10:30">10:30 AM</option>
-            <option value="10:40">10:40 AM</option>
-            <option value="10:50">10:50 AM</option>
-            <option value="11:00">11:00 AM</option>
-            <option value="11:10">11:10 AM</option>
-            <option value="11:20">11:20 AM</option>
-            <option value="11:30">11:30 AM</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="9:10 AM">9:10 AM</option>
+            <option value="9:20 AM">9:20 AM</option>
+            <option value="9:30 AM">9:30 AM</option>
+            <option value="9:40 AM">9:40 AM</option>
+            <option value="9:50 AM">9:50 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="10:10 AM">10:10 AM</option>
+            <option value="10:20 AM">10:20 AM</option>
+            <option value="10:30 AM">10:30 AM</option>
+            <option value="10:40 AM">10:40 AM</option>
+            <option value="10:50 AM">10:50 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="11:10 AM">11:10 AM</option>
+            <option value="11:20 AM">11:20 AM</option>
+            <option value="11:30 AM">11:30 AM</option>
       </select>
       <button onClick={handleSubmit}>Select time</button>
     </div>

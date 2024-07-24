@@ -22,6 +22,8 @@ const Login = ({setRoleVar, setUsernameVar}) => {
           setUsernameVar(res.data.username)
           navigate('/')
         }
+        else
+          alert(res.data.message)
       })
     }
     catch (err) {
